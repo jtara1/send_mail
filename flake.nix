@@ -11,21 +11,7 @@
       system = "x86_64-linux";
       pkgs = (import nixpkgs { inherit system; });
     in {
-      packages.x86_64-linux.send-mail = pkgs.stdenv.mkDerivation {
-        pname = "send-mail";
-        version = "1.0";
-        src = ./send_mail.py;
-
-        buildInputs = [ pkgs.python3 ];
-
-        dontUnpack = true;
-        postInstall = ''
-          mkdir -p $out/bin
-          cp $src $out/bin/send-mail
-          chmod +x $out/bin/send-mail
-        '';
-      };
-
+      packages.x86_64-linux.send-mail = (import ./send-mail.nix { inherit pkgs; });
       packages.x86_64-linux.default = self.packages.x86_64-linux.send-mail;
     };
 }
