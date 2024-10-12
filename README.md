@@ -1,6 +1,10 @@
 # send_mail
 Simple command-line for sending an email with remote auth. Python 3 with stdlib only.
 
+## Requirements
+- email (smtp) server
+- email account user and pass that's sending
+
 ## Run
 ```shell
 python send_mail.py
