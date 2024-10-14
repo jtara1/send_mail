@@ -16,7 +16,7 @@
       mkPoetryApplication = _poetry2nix.mkPoetryApplication;
       send-mail-pkg = mkPoetryApplication { projectDir = ./.; };
     in {
-      packages.x86_64-linux.send-mail = send-mail-pkg;
-      packages.x86_64-linux.default = self.packages.x86_64-linux.send-mail;
+      packages.${system}.send-mail = send-mail-pkg;
+      packages.${system}.default = self.packages.x86_64-linux.send-mail;
     };
 }
