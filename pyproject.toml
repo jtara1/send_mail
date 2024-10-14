@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "send-mail"
-version = "1.0.0"
+version = "1.0.1"
 description = "simple command-line for sending an email with remote auth"
 authors = ["James T <j@elk.gg>"]
 license = "Apache 2.0"
