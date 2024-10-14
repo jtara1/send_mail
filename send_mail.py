@@ -83,7 +83,11 @@ def parse_args():
     return args
 
 
+def command_line():
+	args = parse_args()
+	send_email(args.sender_email, args.sender_password, args.receiver_email, args.subject, args.msg, args.smtp_server,
+			   args.smtp_port)
+
+
 if __name__ == "__main__":
-    args = parse_args()
-    send_email(args.sender_email, args.sender_password, args.receiver_email, args.subject, args.msg, args.smtp_server,
-               args.smtp_port)
+    command_line()
