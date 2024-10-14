@@ -6,8 +6,10 @@ import sys
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+SMTP_PORT_DEFAULT = 587
 
-def send_email(sender_email, password, receiver_email, subject, msg, smtp_server, smtp_port):
+
+def send_email(sender_email, password, receiver_email, subject, msg, smtp_server, smtp_port=SMTP_PORT_DEFAULT):
 	# Create a multipart message
 	message = MIMEMultipart()
 	message['From'] = sender_email
@@ -65,7 +67,7 @@ def parse_args():
 	parser.add_argument('--smtp-server', type=str, required=True,
 						help='Endpoint of the SMTP server')
 	parser.add_argument('--smtp-port', type=int, required=False,
-						help='Port of the SMTP server', default=587)
+						help='Port of the SMTP server', default=SMTP_PORT_DEFAULT)
 
 	args = parser.parse_args()
 	if args.config:
