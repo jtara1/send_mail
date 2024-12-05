@@ -1,0 +1,17 @@
+[project]
+name = "send-mail"
+version = "1.0.2"
+description = "simple command-line for sending an email with remote auth"
+authors = ["James T <j@elk.gg>"]
+license = "Apache 2.0"
+readme = "README.md"
+
+[dependencies]
+python = "^3.11"
+
+[project.scripts]
+send-mail = "send_mail:command_line"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
