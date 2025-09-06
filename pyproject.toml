@@ -1,6 +1,6 @@
 [project]
 name = "send-mail"
-version = "1.0.2"
+version = "1.1.0"
 description = "simple command-line for sending an email with remote auth"
 authors = [{"name" = "James T", "email" = "github.jtara1@gmail.com"}]
 license = "Apache-2.0"
