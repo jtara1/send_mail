@@ -5,17 +5,28 @@ import smtplib
 import sys
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from enum import Enum, unique
 
 SMTP_PORT_DEFAULT = 587
 
 
-def send_email(sender_email, password, receiver_email, subject, msg, smtp_server, smtp_port=SMTP_PORT_DEFAULT):
-	# Create a multipart message
+@unique
+class TextMimeType(Enum):
+	PLAIN = 'plain'
+	HTML = 'html'
+
+
+def send_email(sender_email, password, receiver_email, subject, msg, smtp_server, smtp_port=SMTP_PORT_DEFAULT, mime_type=TextMimeType.PLAIN):
 	message = MIMEMultipart()
 	message['From'] = sender_email
 	message['To'] = receiver_email
 	message['Subject'] = subject
-	message.attach(MIMEText(msg, 'plain'))
+
+	if not isinstance(mime_type, TextMimeType):
+		raise ValueError("mime_type must be of type send_mail.TextMimeType")
+
+	part = MIMEText(msg, mime_type.value, 'utf-8')
+	message.attach(part)
 
 	try:
 		with smtplib.SMTP(smtp_server, smtp_port) as server:
@@ -24,6 +35,7 @@ def send_email(sender_email, password, receiver_email, subject, msg, smtp_server
 			server.send_message(message)
 	except Exception as e:
 		stderr(f'An error occurred while sending the email: {str(e)}')
+		raise e
 
 
 def parse_password(file_path) -> str | None:
